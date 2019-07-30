@@ -3,12 +3,13 @@ var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var TodoApp = require('TodoApp');
+var $ = require('jquery');
 
 // Load foundation
-$(document).foundation();
+$(document).foundation;
 
 // App css
-require('style!css!sass!applicationStyles')
+require('applicationStyles')
 
 ReactDOM.render(
   <TodoApp/>,
