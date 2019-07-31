@@ -3,40 +3,50 @@ var AddTodo = require('AddTodo');
 var TodoList = require('TodoList');
 var TodoSearch = require('TodoSearch');
 var uuid = require('uuid');
+var TodoAPI = require('TodoAPI');
+var moment = require('moment');
 
 class TodoApp extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-       todos: [
-        {
-          id:uuid(),
-          text: 'walk the dog'
-        },
-        {
-          id:uuid(),
-          text: 'walk the cat'
-        },
-        {
-          id:uuid(),
-          text: 'walk the monkey'
-        }
-      ]
+       todos: TodoAPI.getTodos()
     }
+    this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
   handleAddTodo(text) {
     var {todos} = this.state;
+    var newTodos = [...todos,
+      { id: uuid(),
+        text: text,
+        completed: false,
+        createdAt: moment().unix(),
+        completedAt: undefined
+      }];
     this.setState({
-      todos: [...todos, {id:uuid(), text: text}]
+      todos: newTodos
     })
-    console.log(this.state.todos);
+    TodoAPI.setTodos(newTodos);
+
+  }
+  handleToggle(id) {
+    var updatedTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        todo.completedAt = todo.completed ? moment().unix() : undefined;
+      }
+      return todo;
+    });
+
+    this.setState({todos: updatedTodos})
   }
   render() {
     var {todos} = this.state;
     return (
       <div>
         <TodoSearch/>
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={(id) => this.handleToggle(id)}/>
         <AddTodo onAddTodo={(text) => this.handleAddTodo(text)}/>
       </div>
     )
