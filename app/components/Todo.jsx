@@ -23,10 +23,10 @@ class Todo extends React.Component {
     return timestamp;
   }
   render() {
-    var {text, id} = this.props;
+    var {text, id, completed} = this.props;
     return (
       <div onClick={this.handleClick}>
-          <input type="checkbox"/>
+          <input type="checkbox" checked={completed}/>
           {text}
           {this.renderDate()}
       </div>
