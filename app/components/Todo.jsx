@@ -1,15 +1,12 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var moment = require('moment');
+var actions = require('actions');
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.renderDate = this.renderDate.bind(this);
-  }
-  handleClick() {
-    var {id} = this.props;
-    this.props.onToggle(id);
   }
   renderDate() {
     var {completed, completedAt, createdAt} = this.props;
@@ -23,9 +20,9 @@ class Todo extends React.Component {
     return timestamp;
   }
   render() {
-    var {text, id, completed} = this.props;
+    var {text, id, completed, dispatch} = this.props;
     return (
-      <div className="todo" onClick={this.handleClick}>
+      <div className="todo" onClick={() => dispatch(actions.toggleTodo(id))}>
           <input type="checkbox" checked={completed}/>
           {text}
           {this.renderDate()}
@@ -34,4 +31,4 @@ class Todo extends React.Component {
   }
 }
 
-module.exports = Todo;
+export default connect()(Todo);
