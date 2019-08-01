@@ -9,7 +9,7 @@ module.exports = {
     modules: [
       path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname, './app/components'),
-      path.resolve(__dirname, './app/api')
+      path.resolve(__dirname, './app/api'),
     ],
     alias: {
       applicationStyles: path.resolve(__dirname, './app/styles/app.scss')

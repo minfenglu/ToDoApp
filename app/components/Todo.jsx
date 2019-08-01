@@ -25,7 +25,7 @@ class Todo extends React.Component {
   render() {
     var {text, id, completed} = this.props;
     return (
-      <div onClick={this.handleClick}>
+      <div className="todo" onClick={this.handleClick}>
           <input type="checkbox" checked={completed}/>
           {text}
           {this.renderDate()}
