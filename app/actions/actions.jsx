@@ -18,3 +18,16 @@ export var toggleTodo = (id) => {
     id
   }
 }
+
+export var toggleShowCompleted = () => {
+  return {
+    type: 'TOGGLE_SHOW_COMPLETED'
+  }
+}
+
+export var setSearchText = (searchText) => {
+  return {
+    type: 'SET_SEARCH_TEXT',
+    searchText
+  }
+}
