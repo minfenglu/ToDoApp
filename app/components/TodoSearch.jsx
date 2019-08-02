@@ -11,7 +11,7 @@ class TodoSearch extends React.Component {
     var {dispatch, showCompleted, searchText} = this.props;
     console.log("showCompleted? ", showCompleted);
     return (
-      <div>
+      <div className="container__header">
         <input ref="searchText" placeholder="Search todos" onChange={() => {
             var searchText = this.refs.searchText.value;
             dispatch(actions.setSearchText(searchText));

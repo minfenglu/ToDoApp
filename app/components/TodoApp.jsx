@@ -11,9 +11,16 @@ class TodoApp extends React.Component{
   render() {
     return (
       <div>
-        <TodoSearch/>
-        <TodoList/>
-        <AddTodo/>
+        <h1 className="page-title">Todo App</h1>
+        <div className="grid-x">
+          <div className="cell align-center small-11 medium-6 large-5">
+            <div className="container">
+              <TodoSearch/>
+              <TodoList/>
+              <AddTodo/>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

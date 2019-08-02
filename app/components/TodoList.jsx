@@ -11,6 +11,11 @@ class TodoList extends React.Component{
 
   renderTodos() {
     var {todos, showCompleted, searchText} = this.props;
+    if (todos.length === 0) {
+        return (
+          <p className="container__message">Nothing To Do</p>
+        );
+    }
     return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
       return (
         <Todo key={todo.id} {...todo}/>

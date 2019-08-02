@@ -12,21 +12,26 @@ class Todo extends React.Component {
     var {completed, completedAt, createdAt} = this.props;
     var timestamp;
     if (completed) {
-      timestamp = moment.unix(completedAt).format('MMM Do YYYY @ h:mm a');
+      timestamp = 'Completed at ' + moment.unix(completedAt).format('MMM Do YYYY @ h:mm a');
     }
     else{
-      timestamp = moment.unix(createdAt).format('MMM Do YYYY @ h:mm a');
+      timestamp = 'Created at ' + moment.unix(createdAt).format('MMM Do YYYY @ h:mm a');
     }
     return timestamp;
   }
   render() {
     var {text, id, completed, dispatch} = this.props;
+    var todoClassName = completed ? 'todo todo-completed' : 'todo';
     return (
-      <div className="todo" onClick={() => dispatch(actions.toggleTodo(id))}>
-          <input type="checkbox" checked={completed}/>
-          {text}
-          {this.renderDate()}
-      </div>
+      <div className={todoClassName} onClick={() => dispatch(actions.toggleTodo(id))}>
+        <div>
+        <input type="checkbox" checked={completed}/>
+        </div>
+        <div>
+          <p>{text}</p>
+          <p className="todo__subtext">{this.renderDate()}</p>
+        </div>
+       </div>
     )
   }
 }
