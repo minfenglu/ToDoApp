@@ -11,7 +11,7 @@
   "author": "Minfeng Lu",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "create-react-class": "^15.6.3",
     "express": "^4.17.1",
     "firebase": "^6.3.4",
